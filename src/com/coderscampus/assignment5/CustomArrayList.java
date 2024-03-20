@@ -6,12 +6,13 @@ public class CustomArrayList<T> implements CustomList<T> {
     private final int CAPACITY_INCREASE_MULTIPLIER = 2;
     private int capacity;
     private int nextIndex;
-    private Object[] items;
+    private T[] items;
 
     public CustomArrayList(int initialCapacity) {
         this.setCapacity(initialCapacity);
+        this.capacity = initialCapacity;
         this.nextIndex = 0;
-        items = new Object[initialCapacity];
+        items = (T[]) new Object[initialCapacity];
     }
 
     public int getCapacity() {
@@ -28,9 +29,9 @@ public class CustomArrayList<T> implements CustomList<T> {
     @Override
     public boolean add(T item) {
         if (item == null) { return false; }
-        if (this.getSize() >= this.getCapacity()) {
+        if (this.getSize() >= this.capacity) {
             this.capacity *= CAPACITY_INCREASE_MULTIPLIER;
-            Object[] newItems = new Object[this.capacity];
+            T[] newItems = (T[]) new Object[this.capacity];
             System.arraycopy(this.items, 0, newItems, 0, this.getSize());
             this.items = newItems;
         }
@@ -49,6 +50,6 @@ public class CustomArrayList<T> implements CustomList<T> {
         if (index < 0 || index >= this.nextIndex) {
             throw new IndexOutOfBoundsException("Index: " + index + " is out of bounds.");
         }
-        return (T) this.items[index];
+        return this.items[index];
     }
 }
