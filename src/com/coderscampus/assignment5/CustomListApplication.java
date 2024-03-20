@@ -3,19 +3,33 @@ package com.coderscampus.assignment5;
 public class CustomListApplication {
     public static void main(String[] args) {
         CustomList<String> customListString = new CustomArrayList<>();
-
-        for (int i = 0; i < 50; i++) {
+        final int LIST_SIZE = 21;
+        System.out.println("Populating CustomArrayList");
+        for (int i = 0; i < LIST_SIZE; i++) {
             customListString.add("element " + i);
         }
-
-        // test print via for loop
+        System.out.println("CustomArrayList size after populating: " + customListString.getSize());
+        System.out.println("--------------------");
+        System.out.println("For loop print:");
         for (int i = 0; i < customListString.getSize(); i++) {
-            System.out.println(customListString.get(i));
+            try {
+                System.out.println(customListString.get(i));
+            } catch (IndexOutOfBoundsException e) {
+                System.err.println(e.getMessage());
+            }
         }
-
-        // test print via stream.forEach
+        System.out.println("--------------------");
+        System.out.println("Stream print:");
         customListString.stream()
                         .forEach(System.out::println);
-
+        System.out.println("--------------------");
+        System.out.println("For loop print with intentional exceptions:");
+        for (int i = -5; i < LIST_SIZE + 5; i++) {
+            try {
+                System.out.println(customListString.get(i));
+            } catch (IndexOutOfBoundsException e) {
+                System.err.println(e.getMessage());
+            }
+        }
     }
 }
