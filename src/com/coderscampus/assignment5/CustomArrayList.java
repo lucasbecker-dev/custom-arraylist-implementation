@@ -1,6 +1,9 @@
 package com.coderscampus.assignment5;
 
 
+import java.util.Arrays;
+import java.util.stream.Stream;
+
 public class CustomArrayList<T> implements CustomList<T> {
     private static final int CAPACITY_INCREASE_MULTIPLIER = 2;
     private static final int DEFAULT_INITIAL_CAPACITY = 10;
@@ -47,5 +50,11 @@ public class CustomArrayList<T> implements CustomList<T> {
             throw new IndexOutOfBoundsException("Index: " + index + " is out of bounds.");
         }
         return this.items[index];
+    }
+
+    // experimenting - made it streamable for learning purposes
+    @Override
+    public Stream<T> stream() {
+        return Arrays.stream(items, 0, nextIndex);
     }
 }

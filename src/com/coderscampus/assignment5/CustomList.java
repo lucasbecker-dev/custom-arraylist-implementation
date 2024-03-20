@@ -1,5 +1,7 @@
 package com.coderscampus.assignment5;
 
+import java.util.stream.Stream;
+
 public interface CustomList<T> {
     /**
      * This method should add a new item into the <code>CustomList</code> and should
@@ -24,4 +26,11 @@ public interface CustomList<T> {
      * @return The element that is stored inside of the <code>CustomList</code> at the given index
      */
     T get(int index);
+
+    /**
+     * This method will convert the internally managed data of the <code>CustomList</code> implementer in the form
+     * of a <code>Stream</code>.
+     * @return <code>Stream</code> containing the internally managed data of the class.
+     */
+    Stream<T> stream();
 }
