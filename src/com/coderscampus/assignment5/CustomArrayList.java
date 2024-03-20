@@ -4,6 +4,7 @@ package com.coderscampus.assignment5;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
+@SuppressWarnings("unchecked")
 public class CustomArrayList<T> implements CustomList<T> {
     private static final int CAPACITY_INCREASE_MULTIPLIER = 2;
     private static final int DEFAULT_INITIAL_CAPACITY = 10;
