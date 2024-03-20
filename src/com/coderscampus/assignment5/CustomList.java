@@ -30,7 +30,7 @@ public interface CustomList<T> {
     /**
      * This method will convert the internally managed data of the <code>CustomList</code> implementer in the form
      * of a <code>Stream</code>.
-     * @return <code>Stream</code> containing the internally managed data of the class.
+     * @return <code>Stream</code> representing the internally managed data of the class.
      */
     Stream<T> stream();
 }
