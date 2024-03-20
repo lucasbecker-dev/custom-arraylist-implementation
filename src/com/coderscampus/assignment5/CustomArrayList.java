@@ -25,7 +25,6 @@ public class CustomArrayList<T> implements CustomList<T> {
 
     @Override
     public boolean add(T item) {
-        if (item == null) { return false; }
         if (this.getSize() >= this.capacity) {
             this.capacity *= CAPACITY_INCREASE_MULTIPLIER;
             T[] newItems = (T[]) new Object[this.capacity];
