@@ -1,29 +1,26 @@
 package com.coderscampus.assignment5;
 
-import java.util.Arrays;
 
 public class CustomArrayList<T> implements CustomList<T> {
-    private final int CAPACITY_INCREASE_MULTIPLIER = 2;
+    private static final int CAPACITY_INCREASE_MULTIPLIER = 2;
+    private static final int DEFAULT_INITIAL_CAPACITY = 10;
     private int capacity;
     private int nextIndex;
     private T[] items;
 
-    public CustomArrayList(int initialCapacity) {
-        this.setCapacity(initialCapacity);
+    public CustomArrayList() {
+        this.capacity = DEFAULT_INITIAL_CAPACITY;
+        this.nextIndex = 0;
+        items = (T[]) new Object[DEFAULT_INITIAL_CAPACITY];
+    }
+
+    public CustomArrayList(int initialCapacity) throws IllegalArgumentException {
+        if (initialCapacity <= 0) {
+            throw new IllegalArgumentException("Capacity must be a positive integer. Value passed: " + initialCapacity);
+        }
         this.capacity = initialCapacity;
         this.nextIndex = 0;
         items = (T[]) new Object[initialCapacity];
-    }
-
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(int capacity) throws IllegalArgumentException {
-        if (capacity <= 0) {
-            throw new IllegalArgumentException("Capacity must be a positive integer. Value passed: " + capacity);
-        }
-        this.capacity = capacity;
     }
 
     @Override
