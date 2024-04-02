@@ -9,13 +9,13 @@ public class CustomArrayList<T> implements CustomList<T> {
     private static final int CAPACITY_INCREASE_MULTIPLIER = 2;
     private static final int DEFAULT_INITIAL_CAPACITY = 10;
     private int capacity;
-    private int nextIndex;
+    private int size;
     private T[] items;
 
     public CustomArrayList() {
         this.capacity = DEFAULT_INITIAL_CAPACITY;
-        this.nextIndex = 0;
-        items = (T[]) new Object[DEFAULT_INITIAL_CAPACITY];
+        this.size = 0;
+        this.items = (T[]) new Object[DEFAULT_INITIAL_CAPACITY];
     }
 
     public CustomArrayList(int initialCapacity) throws IllegalArgumentException {
@@ -23,8 +23,8 @@ public class CustomArrayList<T> implements CustomList<T> {
             throw new IllegalArgumentException("Capacity must be a positive integer. Value passed: " + initialCapacity);
         }
         this.capacity = initialCapacity;
-        this.nextIndex = 0;
-        items = (T[]) new Object[initialCapacity];
+        this.size = 0;
+        this.items = (T[]) new Object[initialCapacity];
     }
 
     @Override
@@ -36,19 +36,19 @@ public class CustomArrayList<T> implements CustomList<T> {
 //            this.items = newItems;
             this.items = Arrays.copyOf(this.items, this.capacity);
         }
-        this.items[this.nextIndex] = item;
-        this.nextIndex++;
+        this.items[this.size] = item;
+        this.size++;
         return true;
     }
 
     @Override
     public int getSize() {
-        return this.nextIndex;
+        return this.size;
     }
 
     @Override
     public T get(int index) throws IndexOutOfBoundsException {
-        if (index < 0 || index >= this.nextIndex) {
+        if (index < 0 || index >= this.size) {
             throw new IndexOutOfBoundsException("Index: " + index + " is out of bounds.");
         }
         return this.items[index];
@@ -57,6 +57,6 @@ public class CustomArrayList<T> implements CustomList<T> {
     // experimenting - made it streamable for learning purposes
     @Override
     public Stream<T> stream() {
-        return Arrays.stream(items, 0, nextIndex);
+        return Arrays.stream(this.items, 0, this.size);
     }
 }
