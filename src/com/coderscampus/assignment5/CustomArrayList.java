@@ -31,9 +31,10 @@ public class CustomArrayList<T> implements CustomList<T> {
     public boolean add(T item) {
         if (this.getSize() >= this.capacity) {
             this.capacity *= CAPACITY_INCREASE_MULTIPLIER;
-            T[] newItems = (T[]) new Object[this.capacity];
-            System.arraycopy(this.items, 0, newItems, 0, this.getSize());
-            this.items = newItems;
+//            T[] newItems = (T[]) new Object[this.capacity];
+//            System.arraycopy(this.items, 0, newItems, 0, this.getSize());
+//            this.items = newItems;
+            this.items = Arrays.copyOf(this.items, this.capacity);
         }
         this.items[this.nextIndex] = item;
         this.nextIndex++;
